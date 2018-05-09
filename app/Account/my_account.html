@@ -1,0 +1,26 @@
+<div class="panel-body" data-ng-controller="MyAccountValidate">
+  <form name="loginForm" novalidate>
+    <div class="form-group" data-ng-class="{'has-error': loginForm.nameInput.$dirty && loginForm.nameInput.$invalid }">
+        <label for="">Имя</label>
+        <input type="text" class="form-control" name="nameInput" data-ng-model="vm.name" data-ng-required="true">
+    </div>
+    <div data-ng-show="loginForm.nameInput.$dirty">
+        <p data-ng-show="loginForm.nameInput.$error.required">Поле имя обязательно</p>
+    </div>
+    <div class="form-group" data-ng-class="{'has-error': loginForm.emailInput.$dirty && loginForm.emailInput.$invalid }">
+        <label for="">E-mail</label>
+        <input type="email" class="form-control" name="emailInput" data-ng-model="vm.email" data-ng-required="true">
+    </div>
+    <div data-ng-show="loginForm.emailInput.$dirty && loginForm.emailInput.$invalid">
+        <p data-ng-show="loginForm.emailInput.$error.required">Введите корректный email</p>
+    </div>
+    <div class="form-group" data-ng-class="{'has-error': loginForm.phoneInput.$dirty && loginForm.phoneInput.$invalid }">
+        <label for="">Телефон</label>
+        <input type="text" class="form-control" name="phoneInput" data-ng-model="vm.phone" data-ng-bind="phone">
+    </div>
+    <div data-ng-show="loginForm.phoneInput.$error" data-ng-show="loginForm.phoneInput.$dirty && loginForm.phone.$invalid">
+        <p data-ng-show="required">Введите корректный номер</p>
+    </div>
+    <button type="submit" class="btn btn-default" data-ng-disabled="loginForm.$invalid">Послать</button>
+  </form>
+</div>
