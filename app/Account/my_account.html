@@ -1,5 +1,5 @@
 <div class="panel-body" data-ng-controller="MyAccountValidate">
-  <form name="vm.vm.loginForm" novalidate>
+  <form name="vm.loginForm" novalidate>
     <div class="form-group" data-ng-class="{'has-error': vm.loginForm.nameInput.$dirty && vm.loginForm.nameInput.$invalid }">
         <label for="">Имя</label>
         <input type="text" class="form-control" name="nameInput" data-ng-model="vm.name" data-ng-required="true">
@@ -12,16 +12,16 @@
         <input type="email" class="form-control" name="emailInput" data-ng-model="vm.inputData.email" data-ng-required="true">
     </div>
     <div data-ng-show="vm.loginForm.emailInput.$dirty && vm.loginForm.emailInput.$invalid">
-        <p data-ng-show="vm.loginForm.emailInput.$error.required">Введите корректный email</p>
+        <p data-ng-show="vm.loginForm.emailInput.$error.required">Поле email обязательно</p>
+        <p data-ng-show="vm.loginForm.emailInput.$invalid" ng-if="!vm.loginForm.emailInput.$error.required">Введите корректный email</p>
     </div>
     <div class="form-group" data-ng-class="{'has-error': vm.loginForm.phoneInput.$dirty && vm.loginForm.phoneInput.$invalid }">
         <label for="">Телефон</label>
-        <input type="text" class="form-control" name="phoneInput" data-ng-model="vm.inputData.phone" data-ng-bind="phone">
+        <input type="text" class="form-control" name="phoneInput" data-ng-model="vm.inputData.phone" data-ng-bind="phone" data-ng-pattern="/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/">
     </div>
-    <div data-ng-show="vm.loginForm.phoneInput.$error" data-ng-show="vm.loginForm.phoneInput.$dirty && vm.loginForm.phone.$invalid">
-        <p data-ng-show="required">Введите корректный номер</p>
+    <div data-ng-show="vm.loginForm.phoneInput.$dirty && vm.loginForm.phoneInput.$invalid">
+        <p data-ng-show="vm.loginForm.phoneInput.$error.pattern">Введите корректный номер</p>
     </div>
-    <button type="submit" class="btn btn-default" data-ng-disabled="vm.loginForm.$invalid" data-ng-click="vm.showVm()">Послать</button>
-  </form>
+   </form>
   {{vm}}
 </div>
